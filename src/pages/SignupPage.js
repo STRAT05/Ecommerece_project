@@ -2,7 +2,6 @@ import React from "react";
 import SignupHeader from "../components/SignupHeader";
 import SignupFooter from "../components/SignupFooter";
 import "../signup.css";
-import { Link } from "react-router-dom"; // ✅ import Link
 
 function SignupPage() {
   return (
@@ -39,10 +38,7 @@ function SignupPage() {
             </button>
 
             <p className="login-text">
-              Already have an account?{" "}
-              <Link to="/" className="login-link">
-                Login
-              </Link>
+              Already have an account? <a href="/login">Login</a>
             </p>
           </form>
         </div>

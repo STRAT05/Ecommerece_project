@@ -1,26 +1,10 @@
-import React from "react";
-import { useNavigate } from "react-router-dom"; // ✅ import navigation hook
+import React from 'react';
 
 function CheckoutForm() {
-  const navigate = useNavigate(); // initialize navigation
-
-  const handleSubmit = (e) => {
-    e.preventDefault(); // prevent actual form reload
-
-    // ✅ Confirmation alert before navigating
-    const confirmOrder = window.confirm("Are you sure you want to place this order?");
-    if (confirmOrder) {
-      alert("✅ Order placed successfully!");
-      navigate("/main"); // ✅ navigate to your MainPage.js route
-    } else {
-      alert("❌ Order canceled.");
-    }
-  };
-
   return (
     <div className="checkout-form">
       <h2>Billing Information</h2>
-      <form id="checkoutForm" onSubmit={handleSubmit}>
+      <form id="checkoutForm">
         <label>Full Name</label>
         <input type="text" placeholder="Enter your full name" required />
 
@@ -31,29 +15,16 @@ function CheckoutForm() {
         <input type="tel" placeholder="+63 9XX XXX XXXX" required />
 
         <label>Shipping Address</label>
-        <input
-          type="text"
-          placeholder="Street, Barangay, City, Province"
-          required
-        />
+        <input type="text" placeholder="Street, Barangay, City, Province" required />
 
         <label>Zip Code</label>
         <input type="text" placeholder="1000" required />
 
-        <h2 id="payment-method">Payment Method</h2>
-
+        <h2>Payment Method</h2>
         <div className="payment-options">
-          <label>
-            <input type="radio" name="payment" value="card" defaultChecked />{" "}
-            Credit/Debit Card
-          </label>
-          <label>
-            <input type="radio" name="payment" value="cod" /> Cash on Delivery
-            (COD)
-          </label>
-          <label>
-            <input type="radio" name="payment" value="gcash" /> GCash
-          </label>
+          <label><input type="radio" name="payment" value="card" defaultChecked /> Credit/Debit Card</label>
+          <label><input type="radio" name="payment" value="cod" /> Cash on Delivery (COD)</label>
+          <label><input type="radio" name="payment" value="gcash" /> GCash</label>
         </div>
 
         <div className="card-details">
@@ -71,9 +42,7 @@ function CheckoutForm() {
           </div>
         </div>
 
-        <button type="submit" className="btn-place">
-          Place Order
-        </button>
+        <button type="submit" className="btn-place">Place Order</button>
       </form>
     </div>
   );

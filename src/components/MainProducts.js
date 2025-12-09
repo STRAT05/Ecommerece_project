@@ -11,7 +11,6 @@ const sampleProducts = [
   { id: 2, img: Drone2, title: "CPI RS 3 Mini", price: "From USD $279", desc: "Lightweight and easy to carry, ideal for creators who need stable shots without heavy equipment." },
   { id: 3, img: Drone3, title: "CPI RS 3 Mini", price: "From USD $279", desc: "Lightweight and easy to carry, ideal for creators who need stable shots without heavy equipment." },
   { id: 4, img: Drone4, title: "CPI RS 3 Mini", price: "From USD $279", desc: "Lightweight and easy to carry, ideal for creators who need stable shots without heavy equipment." },
-  { id: 5, img: Drone4, title: "CPI RS 3 Mini", price: "From USD $279", desc: "Lightweight and easy to carry, ideal for creators who need stable shots without heavy equipment." },
 ];
 
 
@@ -26,7 +25,7 @@ export default function MainProducts({ variant }) {
 
 
   <div className="product-grid fade-in">
-    {Array.from({ length: 10 }).map((_, i) => {
+    {Array.from({ length: 8 }).map((_, i) => {
       const p = sampleProducts[i % sampleProducts.length];
       return (
         <div className="product-card" key={`${variant || "main"}-${i}`}>

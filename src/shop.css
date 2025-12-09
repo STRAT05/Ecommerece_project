@@ -9,12 +9,6 @@ body {
   scroll-behavior: smooth;
 }
 
-header, .search-cart, .icon-btn {
-  pointer-events: auto !important;
-  z-index: 9999;
-}
-
-
 /* ====== HEADER ====== */
 header {
   display: flex;
@@ -145,14 +139,13 @@ nav a:hover {
 }
 
 /* ====== SORT BAR ====== */
-/* ===== SORT BAR STYLING ===== */ 
+/* ===== SORT BAR STYLING ===== */
 .sort-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  border-radius: 10px;
-  background-color: #fff5f5ad;
+  background-color: #fff;
   border-bottom: 1px solid #e0e0e0;
 }
 
@@ -329,8 +322,7 @@ nav a:hover {
   margin: 12px 18px 18px;
 }
 
-/* Scope all buttons to only affect ShopPage */
-.shop-container .btn {
+.btn {
   background-color: #0078ff;
   color: #fff;
   border: none;
@@ -342,13 +334,13 @@ nav a:hover {
   transition: all 0.3s ease;
 }
 
-.shop-container .btn:hover {
+.btn:hover {
   background-color: #005ecc;
   box-shadow: 0 4px 12px rgba(0, 120, 255, 0.3);
   transform: translateY(-2px);
 }
 
-.shop-container .btn-outline {
+.btn-outline {
   background-color: #ededed;
   color: #000;
   border: 1.5px solid #d5d5d5;
@@ -360,13 +352,12 @@ nav a:hover {
   transition: all 0.3s ease;
 }
 
-.shop-container .btn-outline:hover {
+.btn-outline:hover {
   background-color: #0078ff;
   color: #fff;
   box-shadow: 0 4px 12px rgba(0, 120, 255, 0.3);
   transform: translateY(-2px);
 }
-
 
 /* ====== FOOTER ====== */
 .footer {

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function MainNavbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -36,7 +37,7 @@ export default function MainNavbar() {
 
           <nav className="nav-links" aria-label="Primary">
             {navLinks.map((t) => (
-              <a key={t} href="#">{t}</a>
+                <a key={t} href="#">{t}</a>
             ))}
           </nav>
 
@@ -58,7 +59,7 @@ export default function MainNavbar() {
 
       <div className={`mobile-menu ${mobileOpen ? "active" : ""}`}>
         {navLinks.map((t) => (
-          <a key={t} href="#">{t}</a>
+            <a key={t} href="#">{t}</a>
         ))}
       </div>
     </>

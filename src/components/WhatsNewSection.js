@@ -33,7 +33,7 @@ const WhatsNewSection = () => (
             <span></span>
             Take it Easy
           </span>
-         <h2 id="go-big-with-mini">Go Big With Mini</h2>
+          <h2>Go Big With Mini</h2>
           <p>
             DJI Mini 4 Pro is our most advanced mini-camera drone to date. It integrates powerful imaging capabilities, omnidirectional obstacle sensing, ActiveTrack 360° with the new Manual Mode, and 20km FHD video transmission, bringing even more things to love for pros and beginners alike.
           </p>

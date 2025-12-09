@@ -10,7 +10,7 @@ function CheckoutPage() {
     <>
       <CheckoutHeader />
       <section className="checkout">
-        <h1>DroneX | Checkout</h1>
+        <h1>Checkout</h1>
         <div className="checkout-grid">
           <CheckoutForm />
           <OrderSummary />

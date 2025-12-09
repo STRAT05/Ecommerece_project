@@ -7,7 +7,6 @@ const LoginHeader = () => {
     <header className="login-header">
       <div className="logo">DJI Store</div>
       <nav>
-      
       </nav>
     </header>
   );

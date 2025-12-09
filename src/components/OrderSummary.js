@@ -10,8 +10,8 @@ function OrderSummary() {
       <div className="summary-item">
         <img src={Drone1} alt="DJI Mavic 3 Pro" />
         <div>
-          <p>DJI Mini 5</p>
-          <span>₱65,000</span>
+          <p>DJI Mavic 3 Pro</p>
+          <span>₱120,000</span>
         </div>
       </div>
 

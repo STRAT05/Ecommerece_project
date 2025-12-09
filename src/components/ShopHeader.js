@@ -1,23 +1,16 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
 import "../shop.css";
 
 const ShopHeader = () => {
-  const navigate = useNavigate(); // initialize navigation
-
-  const goToCart = () => {
-    navigate("/cart"); // navigate to CartPage
-  };
-
   return (
     <header className="shop-header">
       <div className="logo">DJI Store</div>
       <nav className="navbar">
-        <a href="/main">Home</a>
-        <a href="/shop">Camera Drones</a>
-        <a href="/shop">Handheld</a>
-        <a href="/shop">Accessories</a>
-        <a href="/shop">Support</a>
+        <a href="#">Home</a>
+        <a href="#">Camera Drones</a>
+        <a href="#">Handheld</a>
+        <a href="#">Accessories</a>
+        <a href="#">Support</a>
       </nav>
 
       <div className="search-cart">
@@ -27,9 +20,7 @@ const ShopHeader = () => {
           placeholder="Search products..."
         />
         <button className="icon-btn">🔍</button>
-        <button className="icon-btn" onClick={goToCart}>
-          🛒
-        </button>
+        <button className="icon-btn">🛒</button>
       </div>
     </header>
   );

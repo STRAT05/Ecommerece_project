@@ -2,29 +2,37 @@ import React, { useState } from "react";
 import "../login.css";
 import LoginHeader from "../components/LoginHeader";
 import LoginFooter from "../components/LoginFooter";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [currentForm, setCurrentForm] = useState("login");
+  const [forgotEmail, setForgotEmail] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-    if (!email || !password) {
-      alert("Please fill in both fields.");
-      return;
-    }
+  if (!email || !password) {
+    alert("Please fill in both fields.");
+    return;
+  }
 
-    // Simulate successful login
-    navigate("/main"); // ✅ Redirect to MainPage
-  };
+  // Simulate successful login
+  navigate("/main"); // ✅ Redirect to MainPage
+};
 
-  const handleAdminLogin = (e) => {
-    e.preventDefault();
-    navigate("/dashboard"); // ✅ Redirect to DashboardPage
-  };
+const handleForgotPassword = (e) => {
+  e.preventDefault();
+  if (!forgotEmail) {
+    alert("Please enter your email.");
+    return;
+  }
+  alert("Password reset link sent to your email!");
+  setCurrentForm("login");
+  setForgotEmail("");
+};
 
   return (
     <>
@@ -32,10 +40,11 @@ const LoginPage = () => {
 
       <main className="login-container">
         <div className="login-card">
-          <h1>Welcome</h1>
-          <p>Sign in to continue shopping</p>
+          <h1>{currentForm === "login" ? "Welcome" : "Reset Password"}</h1>
+          <p>{currentForm === "login" ? "Sign in to continue shopping" : "Enter your email to receive a reset link"}</p>
 
-          <form className="login-form" onSubmit={handleSubmit}>
+          {currentForm === "login" ? (
+            <form className="login-form" onSubmit={handleSubmit}>
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -60,35 +69,52 @@ const LoginPage = () => {
               <label>
                 <input type="checkbox" /> Remember me
               </label>
-              <a href="#" style={{ marginBottom: "20px" }}>
+              <button type="button" className="forgot-password-link" onClick={() => setCurrentForm("forgot")}>
                 Forgot password?
-              </a>
+              </button>
             </div>
 
-            <button
-              style={{ marginBottom: "10px" }}
-              type="submit"
-              className="login-btn"
-            >
+            <button type="submit" className="login-btn">
               Login
             </button>
 
-            <button
-              onClick={handleAdminLogin}
-              type="button"
-              className="login-btn"
-              style={{ backgroundColor: "#00428dd3", color: "white" }}
-            >
-              Login as Admin
-            </button>
-
             <p className="signup-text">
-              Don’t have an account?{" "}
-              <Link to="/signup" className="signup-link">
-                Sign up
-              </Link>
+              Don’t have an account? <a href="#">Sign up</a>
             </p>
-          </form>
+
+            <button
+              type="button"
+              className="admin-login-btn"
+              onClick={() => navigate("/admin-login")}
+            >
+              Admin Login
+            </button>
+            </form>
+          ) : (
+            <form className="login-form" onSubmit={handleForgotPassword}>
+              <label htmlFor="forgotEmail">Email</label>
+              <input
+                type="email"
+                id="forgotEmail"
+                placeholder="you@example.com"
+                value={forgotEmail}
+                onChange={(e) => setForgotEmail(e.target.value)}
+                required
+              />
+
+              <button type="submit" className="login-btn">
+                Send Reset Link
+              </button>
+
+              <button
+                type="button"
+                className="admin-login-btn"
+                onClick={() => setCurrentForm("login")}
+              >
+                Back to Login
+              </button>
+            </form>
+          )}
         </div>
       </main>
 

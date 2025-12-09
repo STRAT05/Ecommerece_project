@@ -111,11 +111,24 @@ a {
   text-decoration: none;
 }
 
+.forgot-password-link {
+  background: none;
+  border: none;
+  color: #0077ff;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
+
 .login-btn {
   background: #0077ff;
   color: #fff;
   font-weight: 600;
-  padding: 0.9rem;
+  padding: 0.5rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -141,6 +154,23 @@ a {
 .signup-text a {
   color: #0077ff;
   font-weight: 600;
+}
+
+.admin-login-btn {
+  background: #f0f0f0;
+  color: #333;
+  font-weight: 600;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.admin-login-btn:hover {
+  background: #e0e0e0;
 }
 
 /* === Footer === */

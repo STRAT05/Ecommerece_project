@@ -21,7 +21,6 @@ body {
   z-index: 1000;
   transition: background 0.3s ease, box-shadow 0.3s ease;
   background: transparent;
-  border: none;
 }
 
 .navbar.scrolled {
@@ -31,14 +30,12 @@ body {
 
 .nav-container {
   max-width: 1200px;
-  margin: 0 auto; /* center the container */
-  padding: 0px;
+  margin: 0 auto;
+  padding: 0 20px;
   display: flex;
-  justify-content: center; /* center all items horizontally */
+  justify-content: space-between;
   align-items: center;
-  gap: 350px; /* optional spacing between logo and links */
 }
-
 
 .logo {
   font-size: 1.5rem;
@@ -47,12 +44,25 @@ body {
   margin-right: 20px;
 }
 
+.back-btn {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.back-btn:hover {
+  background: #0056b3;
+}
+
 .nav-links {
   display: flex;
-  margin-top: 5px;
-  gap: 20px;
-  justify-content: center; /* keep links centered relative to each other */
-  flex: none; /* prevent links from stretching */
+  gap: 15px;
+  flex: 1;
+  justify-content: center;
 }
 
 .nav-links a {
@@ -63,7 +73,8 @@ body {
 }
 
 .navbar:not(.scrolled) .nav-links a,
-.navbar:not(.scrolled) .icon {
+.navbar:not(.scrolled) .icon,
+.navbar:not(.scrolled) .buy-btn {
   color: #fff;
 }
 
@@ -90,7 +101,7 @@ body {
 }
 
 .buy-btn {
-  background: #e2dddd;
+  background: #6e6e6e;
   border: none;
   padding: 8px 16px;
   border-radius: 20px;
@@ -100,7 +111,7 @@ body {
 }
 
 .buy-btn:hover {
-  background: #afafaf;
+  background: #0056c1;
 }
 
 .menu-toggle {
@@ -110,6 +121,25 @@ body {
   font-size: 1.8rem;
   cursor: pointer;
   color: inherit;
+}
+
+.logout-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #c82333;
 }
 
 /* Mobile Dropdown */
@@ -194,12 +224,16 @@ body {
 }
 
 .btn {
-  padding: 8px 18px;
+  padding: 10px 20px;
   border-radius: 25px;
   background: #fff;
   color: #333;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: 0.3s;
 }
 
@@ -615,7 +649,7 @@ body {
 /* footer */
 /* ===== Footer ===== */
 .footer {
-  background: #ffffff;
+  background: #f9f9f9;
   padding: 40px 20px 20px;
 }
 
@@ -732,6 +766,47 @@ body {
 
 
 
+/* ===== Admin Products Management Table ===== */
+.products-table {
+  width: 80%;
+  max-width: 1200px;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.products-table th,
+.products-table td {
+  padding: 15px 20px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.products-table th {
+  background: #f9f9f9;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.products-table td {
+  font-size: 14px;
+  color: #555;
+}
+
+.products-table tbody tr:hover {
+  background: #f5f5f5;
+}
+
+.products-table img {
+  border-radius: 6px;
+}
+
 /* ===== Whats New Section ===== */
 .text-section {
   background-color: white;
@@ -764,7 +839,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 60px;
-  padding: 0 14%;
+  padding: 0 8%;
 }
 
 .imgWrapper {
@@ -840,6 +915,3 @@ body {
 }
 
 
-#go-big-with-mini{
-  padding: 0px;
-}

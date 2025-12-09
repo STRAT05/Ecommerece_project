@@ -65,7 +65,7 @@ const ShopPage = () => {
   const handleReset = () => {
     setSelectedSeries([]);
     setSortOption("Recommendation");
-    setFilteredProducts(productsData);
+    setFilteredProducts(allProducts);
   };
 
   return (
