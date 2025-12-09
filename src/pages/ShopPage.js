@@ -65,7 +65,7 @@ const ShopPage = () => {
   const handleReset = () => {
     setSelectedSeries([]);
     setSortOption("Recommendation");
-    setFilteredProducts(allProducts);
+    setFilteredProducts(productsData);
   };
 
   return (
@@ -143,3 +143,4 @@ const ShopPage = () => {
 };
 
 export default ShopPage;
+
