@@ -4,81 +4,61 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // List all users
-    public function index()
-    {
-        $users = User::all();
-
-        return view('users.index', compact('users')); // Pass users to the view
-    }
-
-    // Show create form
-    public function create()
-    {
-        return view('users.create'); // Return the user creation form view
-    }
-
-    // Store a new user
-    public function store(Request $request)
+    // POST /api/register
+    public function apiRegister(Request $request)
     {
         $validated = $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
+            'name'                  => 'required|string|max:255',
+            'email'                 => 'required|email|unique:users,email',
+            'password'              => 'required|string|min:8|confirmed',
         ]);
 
         $user = User::create([
             'name'     => $validated['name'],
             'email'    => $validated['email'],
-            'password' => $validated['password'], // will be hashed by model cast
+            'password' => Hash::make($validated['password']),
         ]);
 
-        return redirect()->route('users.index')->with('success', 'User created successfully.');
+        // No token anymore
+        return response()->json([
+            'message' => 'User created successfully.',
+            'user'    => $user,
+        ], 201);
     }
 
-    // Show single user
-    public function show(User $user)
+    // POST /api/login
+    public function apiLogin(Request $request)
     {
-        return view('users.show', compact('user'));
-    }
-
-    // Show edit form
-    public function edit(User $user)
-    {
-        return view('users.edit', compact('user'));
-    }
-
-    // Update user
-    public function update(Request $request, User $user)
-    {
-        $validated = $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:8|confirmed',
+        $credentials = $request->validate([
+            'email'    => 'required|email',
+            'password' => 'required|string',
         ]);
 
-        $data = [
-            'name'  => $validated['name'],
-            'email' => $validated['email'],
-        ];
+        $user = User::where('email', $credentials['email'])->first();
 
-        if (!empty($validated['password'])) {
-            $data['password'] = $validated['password']; // model will hash
+        if (! $user || ! Hash::check($credentials['password'], $user->password)) {
+            return response()->json([
+                'message' => 'Invalid credentials.',
+            ], 422);
         }
 
-        $user->update($data);
-
-        return redirect()->route('users.show', $user)->with('success', 'User updated successfully.');
+        // No token anymore
+        return response()->json([
+            'message' => 'Login successful.',
+            'user'    => $user,
+        ]);
     }
 
-    // Delete user
-    public function destroy(User $user)
+    // POST /api/logout
+    public function apiLogout(Request $request)
     {
-        $user->delete();
-
-        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+        // Nothing to revoke now; keep for compatibility
+        return response()->json([
+            'message' => 'Logged out.',
+        ]);
     }
 }
