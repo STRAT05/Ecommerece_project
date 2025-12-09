@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import "../login.css";
+import "../css/login.css";
 import LoginHeader from "../components/LoginHeader";
 import LoginFooter from "../components/LoginFooter";
 import { useNavigate } from "react-router-dom";
 
+const ADMIN_EMAIL = "admin@example.com";
+const ADMIN_PASSWORD = "admin123";
+
 const AdminLoginPage = () => {
-  const [email, setEmail] = useState("");
+  const [email, setEmail]       = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -17,9 +20,9 @@ const AdminLoginPage = () => {
       return;
     }
 
-    // Simulate admin authentication (you can replace this with real authentication logic)
-    if (email === "admin@example.com" && password === "admin123") {
-      // Simulate successful admin login
+    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+      // mark admin as logged in (client-side only, no DB)
+      localStorage.setItem("isAdmin", "true");
       navigate("/admin"); // Redirect to AdminDashboardPage
     } else {
       alert("Invalid admin credentials. Please try again.");
@@ -60,7 +63,7 @@ const AdminLoginPage = () => {
               <label>
                 <input type="checkbox" /> Remember me
               </label>
-              <a href="#">Forgot password?</a>  
+              <a href="#">Forgot password?</a>
             </div>
 
             <button type="submit" className="login-btn">

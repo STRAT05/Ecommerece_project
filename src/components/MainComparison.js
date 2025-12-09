@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Mavic4Pro from "../Images/DroneCategories/Category1.png";
 import Air3S from "../Images/DroneCategories/Category2.png";
-import Mini5Pro from "../Images/DroneCategories/Category1.png"; // If same as Category1
+import Mini5Pro from "../Images/DroneCategories/Category1.png";
 import Flip from "../Images/DroneCategories/Category4.png";
 import Avata2 from "../Images/DroneCategories/Category4.png";
 import Avata from "../Images/DroneCategories/Category2.png";
@@ -13,6 +13,7 @@ const aerialDrones = [
   {
     img: Mavic4Pro,
     name: "DJI Mavic 4 Pro",
+    series: "DJI Mavic",
     specs: [
       "< 1063 g Takeoff Weight",
       "51-min Max Flight Time",
@@ -22,11 +23,11 @@ const aerialDrones = [
       "Omnidirectional Obstacle Sensing",
       "DJI O4+ Up to 20 km",
     ],
-    link: "#",
   },
   {
     img: Air3S,
     name: "DJI Air 3S",
+    series: "DJI Air",
     specs: [
       "< 724 g Takeoff Weight",
       "45-min Max Flight Time",
@@ -36,11 +37,11 @@ const aerialDrones = [
       "Omnidirectional Obstacle Sensing",
       "DJI O4+ Up to 20 km",
     ],
-    link: "#",
   },
   {
     img: Mini5Pro,
     name: "DJI Mini 5 Pro",
+    series: "DJI Mini",
     specs: [
       "< 249.9 g Takeoff Weight",
       "37/52-min Max Flight Time Dual Battery 36",
@@ -50,11 +51,11 @@ const aerialDrones = [
       "Omnidirectional Obstacle Sensing",
       "DJI O4+ Up to 12 km",
     ],
-    link: "#",
   },
   {
     img: Flip,
     name: "DJI Flip",
+    series: "DJI Flip",
     specs: [
       "< 249 g Takeoff Weight",
       "31-min Max Flight Time Single Powered Battery",
@@ -64,7 +65,6 @@ const aerialDrones = [
       "Forward & Downward Sensing",
       "DJI O4 Up to 10 km",
     ],
-    link: "#",
   },
 ];
 
@@ -72,6 +72,7 @@ const immersiveDrones = [
   {
     img: Avata2,
     name: "DJI Avata 2",
+    series: "DJI Avata",
     outOfStock: true,
     specs: [
       "377 g Takeoff Weight",
@@ -82,11 +83,11 @@ const immersiveDrones = [
       "155° Ultra-Wide FOV",
       "RockSteady & HorizonSteady",
     ],
-    link: "#",
   },
   {
     img: Avata,
     name: "DJI Avata",
+    series: "DJI Avata",
     outOfStock: true,
     specs: [
       "410 g Takeoff Weight",
@@ -97,11 +98,11 @@ const immersiveDrones = [
       "155° Ultra-Wide FOV",
       "RockSteady & HorizonSteady",
     ],
-    link: "#",
   },
   {
     img: FPV,
     name: "DJI FPV",
+    series: "DJI Avata",
     outOfStock: true,
     specs: [
       "795 g Takeoff Weight",
@@ -112,13 +113,18 @@ const immersiveDrones = [
       "150° Ultra-Wide FOV",
       "RockSteady Stabilization",
     ],
-    link: "#",
   },
 ];
+
 export default function MainComparison() {
   const [tab, setTab] = useState("aerial");
+  const navigate = useNavigate();
 
   const drones = tab === "aerial" ? aerialDrones : immersiveDrones;
+
+  const handleLearnMore = (series) => {
+    navigate(`/shop?series=${encodeURIComponent(series)}`);
+  };
 
   return (
     <section className="drone-comparison">
@@ -144,10 +150,16 @@ export default function MainComparison() {
           <div className="drone-card" key={index}>
             <img src={drone.img} alt={drone.name} />
             <h3>{drone.name}</h3>
-            {drone.outOfStock && <div className="out-of-stock">Not in stock</div>}
-            <a href={drone.link} className="learn-link">
+            {drone.outOfStock && (
+              <div className="out-of-stock">Not in stock</div>
+            )}
+            <button
+              type="button"
+              className="learn-link"
+              onClick={() => handleLearnMore(drone.series)}
+            >
               Learn More →
-            </a>
+            </button>
             <ul className="drone-specs">
               {drone.specs.map((spec, i) => (
                 <li key={i}>{spec}</li>

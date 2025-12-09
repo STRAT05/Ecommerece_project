@@ -1,9 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export function DashboardSettings() {
   const [darkMode, setDarkMode] = useState(false);
   const [notifications, setNotifications] = useState(true);
   const [autoRefresh, setAutoRefresh] = useState(false);
+
+  // Load saved preferences once
+  useEffect(() => {
+    const saved = localStorage.getItem("dashboardSettings");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (typeof parsed.darkMode === "boolean") {
+          setDarkMode(parsed.darkMode);
+        }
+        if (typeof parsed.notifications === "boolean") {
+          setNotifications(parsed.notifications);
+        }
+        if (typeof parsed.autoRefresh === "boolean") {
+          setAutoRefresh(parsed.autoRefresh);
+        }
+      } catch {
+        // ignore parse errors
+      }
+    }
+  }, []);
+
+  // Save preferences whenever they change
+  useEffect(() => {
+    const data = { darkMode, notifications, autoRefresh };
+    localStorage.setItem("dashboardSettings", JSON.stringify(data));
+  }, [darkMode, notifications, autoRefresh]);
 
   return (
     <div className="settings-page">

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import productsData from "../data/shopData";
+import api from "../api/client";
 import ShopCard from "../components/ShopCard";
 import ShopHeader from "../components/ShopHeader";
-import CheckoutFooter from "../components/CheckoutFooter"; // ✅ Added
-import "../shop.css";
+import CheckoutFooter from "../components/CheckoutFooter";
+import "../css/shop.css";
 
 import Category1 from "../Images/DroneCategories/Category1.png";
 import Category2 from "../Images/DroneCategories/Category2.png";
@@ -29,11 +29,42 @@ const droneSeries = [
 
 const ShopPage = () => {
   const [selectedSeries, setSelectedSeries] = useState([]);
-  const [sortOption, setSortOption] = useState("Recommendation");
-  const [filteredProducts, setFilteredProducts] = useState(productsData);
+  const [sortOption, setSortOption]         = useState("Recommendation");
+  const [allProducts, setAllProducts]       = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [loading, setLoading]               = useState(true);
+  const [error, setError]                   = useState(null);
 
+  // Fetch from backend
   useEffect(() => {
-    let updated = [...productsData];
+    setLoading(true);
+    setError(null);
+
+    api.get("/products")
+      .then((res) => {
+        const products = res.data || [];
+
+        // add a series label if your DB doesn't have one yet
+        const withSeries = products.map((p) => ({
+          ...p,
+          series: p.series || "DJI Mavic",
+        }));
+
+        setAllProducts(withSeries);
+        setFilteredProducts(withSeries);
+      })
+      .catch((err) => {
+        console.error(err);
+        const msg =
+          err.response?.data?.message || "Failed to load products";
+        setError(msg);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  // Apply filters/sorting
+  useEffect(() => {
+    let updated = [...allProducts];
 
     if (selectedSeries.length > 0) {
       updated = updated.filter((p) => selectedSeries.includes(p.series));
@@ -44,6 +75,7 @@ const ShopPage = () => {
     } else if (sortOption === "Low to High") {
       updated.sort((a, b) => a.price - b.price);
     } else if (sortOption === "Newest") {
+      // placeholder “Newest” – you can sort by created_at later
       updated = updated.filter((p) => p.series === "DJI Mavic");
     } else if (sortOption === "Recommendation") {
       updated = updated.filter((p, i, self) => {
@@ -52,7 +84,7 @@ const ShopPage = () => {
     }
 
     setFilteredProducts(updated);
-  }, [selectedSeries, sortOption]);
+  }, [selectedSeries, sortOption, allProducts]);
 
   const handleCheckboxChange = (series) => {
     setSelectedSeries((prev) =>
@@ -65,8 +97,11 @@ const ShopPage = () => {
   const handleReset = () => {
     setSelectedSeries([]);
     setSortOption("Recommendation");
-    setFilteredProducts(productsData);
+    setFilteredProducts(allProducts);
   };
+
+  if (loading) return <div>Loading products...</div>;
+  if (error)   return <div style={{ color: "red" }}>{error}</div>;
 
   return (
     <div className="shop-container">
@@ -100,13 +135,12 @@ const ShopPage = () => {
 
         <section className="content-section">
           <div className="sort-bar">
-           <div className="item-found">
-            <p>{filteredProducts.length} Item(s) Found</p>
-            <button className="reset-btn" onClick={handleReset}>
-              Reset
-            </button>
-          </div>
-
+            <div className="item-found">
+              <p>{filteredProducts.length} Item(s) Found</p>
+              <button className="reset-btn" onClick={handleReset}>
+                Reset
+              </button>
+            </div>
 
             <div className="sort-right">
               <span>Sort by:</span>
@@ -143,4 +177,3 @@ const ShopPage = () => {
 };
 
 export default ShopPage;
-

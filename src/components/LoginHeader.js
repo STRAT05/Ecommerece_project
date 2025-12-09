@@ -5,9 +5,9 @@ import "../login.css";
 const LoginHeader = () => {
   return (
     <header className="login-header">
-      <div className="logo">DJI Store</div>
-      <nav>
-      </nav>
+      <div className="logo">
+        <Link to="/main">DJI Store</Link>
+      </div>
     </header>
   );
 };

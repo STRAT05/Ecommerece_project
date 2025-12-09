@@ -1,34 +1,59 @@
-import React from 'react';
-import Drone1 from '../Images/DroneCategories/Category1.png';
-import Drone2 from '../Images/DroneCategories/Category2.png';
+import React from "react";
 
-function OrderSummary() {
+function OrderSummary({ items, total }) {
+  const shipping = items.length > 0 ? 500 : 0;
+  const grandTotal = total + shipping;
+
   return (
     <div className="order-summary">
       <h2>Order Summary</h2>
 
-      <div className="summary-item">
-        <img src={Drone1} alt="DJI Mavic 3 Pro" />
-        <div>
-          <p>DJI Mavic 3 Pro</p>
-          <span>₱120,000</span>
-        </div>
-      </div>
-
-      <div className="summary-item">
-        <img src={Drone2} alt="DJI Mini 4" />
-        <div>
-          <p>DJI Mini 4</p>
-          <span>₱45,000</span>
-        </div>
-      </div>
+      {items.length === 0 ? (
+        <p>Your cart is empty.</p>
+      ) : (
+        items.map((item) => (
+          <div className="summary-item" key={item.id}>
+            {item.product?.image && (
+              <img
+                src={
+                  item.product.image.startsWith("http")
+                    ? item.product.image
+                    : `/storage/${item.product.image}`
+                }
+                alt={item.product.name}
+              />
+            )}
+            <div>
+              <p>
+                {item.product?.name} × {item.quantity}
+              </p>
+              <span>
+                ₱{(item.quantity * (item.product?.price || 0)).toFixed(2)}
+              </span>
+            </div>
+          </div>
+        ))
+      )}
 
       <div className="summary-totals">
-        <p><span>Subtotal:</span> <span>₱165,000</span></p>
-        <p><span>Shipping Fee:</span> <span>₱500</span></p>
-        <p className="grand-total"><span>Total:</span> <span>₱165,500</span></p>
+        <p>
+          <span>Subtotal:</span>{" "}
+          <span>₱{total.toFixed(2)}</span>
+        </p>
+        <p>
+          <span>Shipping Fee:</span>{" "}
+          <span>₱{shipping.toFixed(2)}</span>
+        </p>
+        <p className="grand-total">
+          <span>Total:</span>{" "}
+          <span>₱{grandTotal.toFixed(2)}</span>
+        </p>
       </div>
-      <p className="terms">By placing your order, you agree to our <a href="#">Terms & Conditions</a>.</p>
+
+      <p className="terms">
+        By placing your order, you agree to our{" "}
+        <a href="#">Terms &amp; Conditions</a>.
+      </p>
     </div>
   );
 }

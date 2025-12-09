@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 function CheckoutFooter() {
   return (
@@ -13,6 +13,7 @@ function CheckoutFooter() {
             <li><a href="#">Components</a></li>
           </ul>
         </div>
+
         <div className="footer-column">
           <h4>Where to Buy</h4>
           <ul>
@@ -22,6 +23,7 @@ function CheckoutFooter() {
             <li><a href="#">Hobby Shops</a></li>
           </ul>
         </div>
+
         <div className="footer-column">
           <h4>Quick Links</h4>
           <ul>
@@ -31,6 +33,7 @@ function CheckoutFooter() {
             <li><a href="#">Dealer Portal</a></li>
           </ul>
         </div>
+
         <div className="footer-column">
           <h4>Service Plan</h4>
           <ul>
@@ -41,6 +44,7 @@ function CheckoutFooter() {
           </ul>
         </div>
       </div>
+
       <div className="footer-bottom">
         <p>Copyright © 2024 Charles Designs. All rights reserved.</p>
       </div>
@@ -49,4 +53,3 @@ function CheckoutFooter() {
 }
 
 export default CheckoutFooter;
-    

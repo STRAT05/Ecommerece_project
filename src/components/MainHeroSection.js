@@ -1,30 +1,19 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ import navigation hook
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import MainVideo from "../Images/Main Picture/MainVideo.mp4";
 
 export default function MainHeroSection() {
-  const navigate = useNavigate(); // ✅ initialize navigate
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    // Smooth scroll for "Learn More" only
-    const learnButton = document.querySelector(".btn[href='#learn']");
-    if (learnButton) {
-      learnButton.addEventListener("click", (e) => {
-        e.preventDefault();
-        window.scrollTo({ top: 600, behavior: "smooth" });
-      });
-    }
+  const handleLearnMore = (e) => {
+    e.preventDefault();
+    const targetY = 600; // or compute from a ref/section if you prefer
+    window.scrollTo({ top: targetY, behavior: "smooth" });
+  };
 
-    return () => {
-      if (learnButton)
-        learnButton.removeEventListener("click", () => {});
-    };
-  }, []);
-
-  // ✅ handle Buy Now click
   const handleBuyNow = (e) => {
     e.preventDefault();
-    navigate("/shop"); // Navigate to ShopPage
+    navigate("/shop");
   };
 
   return (
@@ -37,7 +26,9 @@ export default function MainHeroSection() {
         <h1>DJI AIR 3S</h1>
         <h2>Chase the View</h2>
         <div className="hero-buttons">
-          <a href="#learn" className="btn">Learn More</a>
+          <a href="#learn" className="btn" onClick={handleLearnMore}>
+            Learn More
+          </a>
           <a href="#buy" className="btn btn-outline" onClick={handleBuyNow}>
             Buy Now
           </a>

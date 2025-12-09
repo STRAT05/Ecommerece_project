@@ -1,9 +1,9 @@
-import React from "react"
-
+import React from "react";
 import "../main.css";
 
-
 const MainFooter = () => {
+  const year = new Date().getFullYear();
+
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -15,6 +15,7 @@ const MainFooter = () => {
             <li><a href="#">Press</a></li>
           </ul>
         </div>
+
         <div className="footer-column">
           <h4>Support</h4>
           <ul>
@@ -23,6 +24,7 @@ const MainFooter = () => {
             <li><a href="#">Warranty</a></li>
           </ul>
         </div>
+
         <div className="footer-column">
           <h4>Legal</h4>
           <ul>
@@ -31,6 +33,7 @@ const MainFooter = () => {
             <li><a href="#">Cookies</a></li>
           </ul>
         </div>
+
         <div className="footer-column">
           <h4>Follow Us</h4>
           <ul>
@@ -40,8 +43,9 @@ const MainFooter = () => {
           </ul>
         </div>
       </div>
+
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} MyCompany. All rights reserved.</p>
+        <p>&copy; {year} DJI Store. All rights reserved.</p>
       </div>
     </footer>
   );

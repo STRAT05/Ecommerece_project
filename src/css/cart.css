@@ -201,3 +201,18 @@ a {
     width: 100%;
   }
 }
+
+.cart-items p {
+  margin: 0;
+}
+
+.cart-item img {
+  background-color: #f5f5f5;
+}
+
+.cart-items-empty {
+  text-align: center;
+  color: #777;
+  padding: 2rem 0;
+}
+

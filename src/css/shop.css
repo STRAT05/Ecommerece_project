@@ -465,3 +465,7 @@ nav a:hover {
   margin-bottom: 20px; /* space below */
   color: #222;
 }
+
+.shop-card-img {
+  background-color: #f0f0f0;
+}

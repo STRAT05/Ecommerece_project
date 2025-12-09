@@ -1,17 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../signup.css";
 
 function SignupHeader() {
+  const location = useLocation();
+
+  const isActive = (path) =>
+    location.pathname === path ? "active" : "";
+
   return (
     <header className="signup-header">
-      <div className="logo">DJI Store</div>
+      <div className="logo">
+        <Link to="/main">DJI Store</Link>
+      </div>
       <nav>
-        <Link to="/">Home</Link>
-        <Link to="/products">Products</Link>
-        <Link to="/cart">Cart</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/signup" className="active">Sign Up</Link>
+        <Link to="/login" className={isActive("/login")}>
+          Login
+        </Link>
+        <Link to="/signup" className={isActive("/signup")}>
+          Sign Up
+        </Link>
       </nav>
     </header>
   );

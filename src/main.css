@@ -914,4 +914,23 @@ body {
    padding-bottom: 45px;
 }
 
+/* Admin products buttons: inline, same width */
+.action-btn {
+  min-width: 90px;        /* makes Edit as wide as Remove */
+  text-align: center;
+}
 
+/* optional: center buttons cell via CSS instead of inline style */
+.products-table td.actions-cell {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Larger Add button on admin page */
+.add-btn {
+  padding: 12px 26px;   /* bigger click area */
+  font-size: 18px !important;      /* slightly larger text */
+  font-weight: 600;
+  border-radius: 999px;  /* more rounded */
+}
