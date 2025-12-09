@@ -1,9 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import SignupHeader from "../components/SignupHeader";
 import SignupFooter from "../components/SignupFooter";
 import "../signup.css";
 
 function SignupPage() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <SignupHeader />
@@ -38,7 +41,7 @@ function SignupPage() {
             </button>
 
             <p className="login-text">
-              Already have an account? <a href="/login">Login</a>
+              Already have an account? <a href="#" onClick={(e) => { e.preventDefault(); navigate("/"); }}>Login</a>
             </p>
           </form>
         </div>
