@@ -1,7 +1,7 @@
  import React from "react";
 
-import Drone2 from "../../Images/FirstDroneSection/DroneToCart-No.2.png";
-import Drone4 from "../../Images/FirstDroneSection/DroneToCart-No.4.png";
+import Drone2 from "../Images/FirstDroneSection/DroneToCart-No.2.png";
+import Drone4 from "../Images/FirstDroneSection/DroneToCart-No.4.png";
 
 export default function AdminInfoCards() {
   return (

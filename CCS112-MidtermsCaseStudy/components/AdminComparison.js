@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import Category1 from "../../Images/DroneCategories/Category1.png";
-import Category2 from "../../Images/DroneCategories/Category2.png";
-import Category3 from "../../Images/DroneCategories/Category3.png";
+import Category1 from "../Images/DroneCategories/Category1.png";
+import Category2 from "../Images/DroneCategories/Category2.png";
+import Category3 from "../Images/DroneCategories/Category3.png";
 
 const managementTools = [
   {
